@@ -9,6 +9,8 @@ export default function TableContainer() {
     { name: "Ferrari", color: "white", price: 12000 },
   ];
 
+  console.log(data);
+
   const config = [
     { label: "Name", render: (car) => car.name, sortValue: (car) => car.name },
     { label: "Color", render: (car) => car.color },
