@@ -4,6 +4,8 @@ import StudentRegistration from "./pages/StudentRegistration";
 import GridLight from "./ui/GridLight";
 import TableContainer from "./ui/TableContainer";
 import ProtectedRoute from "./ui/ProtectedRoute";
+import CoursePlayer from "./pages/CoursePlayer";
+import AppLayout from "./ui/AppLayout";
 
 export default function App() {
   return (
@@ -13,11 +15,12 @@ export default function App() {
           <Route
             element={
               <ProtectedRoute>
-                <TableContainer />
+                <AppLayout />
               </ProtectedRoute>
             }
           >
-            <Route path="/" element={<TableContainer />} />
+            <Route path="/coursePlayer" element={<CoursePlayer />} />
+            <Route path="/coursePlayer/:id" element={<CoursePlayer />} />
           </Route>
           <Route path="login" element={<StudentLogin />} />
           <Route path="registration" element={<StudentRegistration />} />

@@ -3,8 +3,8 @@ import ButtonSubmit from "../../ui/ButtonSubmit";
 import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
-import { useSignupMutation } from "../../store/api/apiSlice";
 import { useNavigate } from "react-router-dom";
+import { useSignupMutation } from "./authApi";
 
 export default function SignupForm() {
   const navigate = useNavigate();
@@ -87,7 +87,7 @@ export default function SignupForm() {
         confirmPassword: "",
       }));
 
-      navigate("/");
+      navigate("/coursePlayer");
     } catch {
       console.error(err);
     }

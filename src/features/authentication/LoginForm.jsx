@@ -4,8 +4,8 @@ import ButtonSubmit from "../../ui/ButtonSubmit";
 import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
-import { useLoginMutation } from "../../store/api/apiSlice";
 import { useNavigate } from "react-router-dom";
+import { useLoginMutation } from "./authApi";
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -47,7 +47,7 @@ export default function LoginForm() {
       console.log(info);
       await login(user).unwrap();
       setInfo((prev) => ({ ...prev, email: "", password: "" }));
-      navigate("/");
+      navigate("/coursePlayer");
     } catch (err) {
       console.error(err);
     }

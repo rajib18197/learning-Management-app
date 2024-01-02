@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useGetCurrentUserQuery } from "../../store/api/apiSlice";
+import { useGetCurrentUserQuery } from "./authApi";
 
 export function useUser() {
   const [user, setUser] = useState(() => {
