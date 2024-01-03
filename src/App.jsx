@@ -6,6 +6,7 @@ import TableContainer from "./ui/TableContainer";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import CoursePlayer from "./pages/CoursePlayer";
 import AppLayout from "./ui/AppLayout";
+import InfiniteScroll from "./ui/InfiniteScroll";
 
 export default function App() {
   return (
@@ -19,7 +20,9 @@ export default function App() {
               </ProtectedRoute>
             }
           >
-            <Route path="/coursePlayer" element={<CoursePlayer />} />
+            <Route index element={<Navigate to={"/coursePlayer"} />} />
+            {/* <Route path="/coursePlayer" element={<CoursePlayer />} /> */}
+            <Route path="/coursePlayer" element={<InfiniteScroll />} />
             <Route path="/coursePlayer/:id" element={<CoursePlayer />} />
           </Route>
           <Route path="login" element={<StudentLogin />} />

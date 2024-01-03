@@ -42,7 +42,7 @@ function Window({ windowName, children, render }) {
   useEffect(
     function () {
       function closeWindow(e) {
-        console.log(!ref.current.contains(e.target));
+        // console.log(!ref.current.contains(e.target));
         if (ref.current && !ref.current.contains(e.target)) {
           close();
         }

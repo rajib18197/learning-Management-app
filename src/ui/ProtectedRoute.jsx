@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function ProtectedRoute({ children }) {
   const { isAuthenticated, isLoading } = useUser();
+  console.log(isAuthenticated);
   const navigate = useNavigate();
 
   useEffect(
