@@ -17,6 +17,33 @@ const coursePlayerApi = apiSlice.injectEndpoints({
       }),
     }),
 
+    getAssignmentMark: builder.query({
+      query: (assignmentId) => ({
+        url: `assignmentMark?assignment_id=${assignmentId}`,
+        method: "GET",
+      }),
+    }),
+
+    addAssignmentMark: builder.mutation({
+      query: (assignmentMark) => ({
+        url: `assignmentMark`,
+        method: "POST",
+        body: assignmentMark,
+      }),
+
+      onQueryStarted: async function (
+        assignmentMark,
+        { dispatch, queryFulfilled }
+      ) {
+        try {
+          // const patchResult = dispatch(
+          //   apiSlice.util.updateQueryData("getAssignmentMark")
+          // );
+          // const result = await queryFulfilled;
+        } catch (err) {}
+      },
+    }),
+
     getQuizByVideoId: builder.query({
       query: (videoId) => ({
         url: `/quizzes?video_id=${videoId}`,
@@ -31,4 +58,5 @@ export const {
   useGetVideoQuery,
   useGetAssignmentByVideoIdQuery,
   useGetQuizByVideoIdQuery,
+  useGetAssignmentMarkQuery,
 } = coursePlayerApi;

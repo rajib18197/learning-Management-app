@@ -29,6 +29,7 @@ export default function Video() {
   return (
     <iframe
       width="100%"
+      height="400px"
       className="aspect-video"
       src={videos?.[0]?.url || video.url}
       title={videos?.[0]?.title || video.title}

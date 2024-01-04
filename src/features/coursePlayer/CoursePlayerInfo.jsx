@@ -1,16 +1,27 @@
+import styled from "styled-components";
 import Video from "./Video";
 import VideoDetails from "./VideoDetails";
 import VideosList from "./VideosList";
 
+const StyledCoursePlayer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+`;
+
+const VideoInfo = styled.div`
+  grid-column: 1 / span 2;
+`;
+
 export default function CoursePlayerInfo() {
   return (
-    <div className="grid grid-cols-3 gap-2 lg:gap-8">
-      <div className="col-span-full w-full space-y-8 lg:col-span-2">
+    <StyledCoursePlayer>
+      <VideoInfo>
         <Video />
         <VideoDetails />
-      </div>
+      </VideoInfo>
 
       <VideosList />
-    </div>
+    </StyledCoursePlayer>
   );
 }

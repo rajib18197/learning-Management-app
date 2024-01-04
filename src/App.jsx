@@ -7,10 +7,12 @@ import ProtectedRoute from "./ui/ProtectedRoute";
 import CoursePlayer from "./pages/CoursePlayer";
 import AppLayout from "./ui/AppLayout";
 import InfiniteScroll from "./ui/InfiniteScroll";
+import GlobalStyles from "./styles/GlobalStyles";
 
 export default function App() {
   return (
     <>
+      <GlobalStyles />
       <BrowserRouter>
         <Routes>
           <Route
@@ -21,8 +23,7 @@ export default function App() {
             }
           >
             <Route index element={<Navigate to={"/coursePlayer"} />} />
-            {/* <Route path="/coursePlayer" element={<CoursePlayer />} /> */}
-            <Route path="/coursePlayer" element={<InfiniteScroll />} />
+            <Route path="/coursePlayer" element={<CoursePlayer />} />
             <Route path="/coursePlayer/:id" element={<CoursePlayer />} />
           </Route>
           <Route path="login" element={<StudentLogin />} />

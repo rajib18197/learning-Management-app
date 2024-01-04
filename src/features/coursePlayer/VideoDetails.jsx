@@ -6,6 +6,20 @@ import {
   useGetVideoQuery,
 } from "./coursePlayerApi";
 import Modal from "../../ui/Modal";
+import Heading from "../../ui/Heading";
+import styled from "styled-components";
+import Button from "../../ui/Button";
+import Assignment from "./Assignment";
+
+const Description = styled.p`
+  font-size: 1.7rem;
+`;
+
+const Task = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+`;
 
 export default function VideoDetails() {
   const { id } = useParams();
@@ -60,56 +74,59 @@ export default function VideoDetails() {
 
   return (
     <div>
-      <h1 className="text-lg font-semibold tracking-tight text-slate-100">
-        {initialTitle || title}
-      </h1>
-      <h2 className=" pb-4 text-sm leading-[1.7142857] text-slate-400">
+      <Heading as="h2">{initialTitle || title}</Heading>
+      <Heading>
         Uploaded on{" "}
         {initialCreatedAt
           ? new Date(initialCreatedAt).getDate()
           : new Date(createdAt).getDate()}{" "}
         {initialCreatedAt
-          ? new Date(initialCreatedAt).getMonth()
+          ? new Date(initialCreatedAt).getMonth() + 1
           : new Date(createdAt).getMonth()}{" "}
         {initialCreatedAt
           ? new Date(initialCreatedAt).getFullYear()
           : new Date(createdAt).getFullYear()}
-      </h2>
+      </Heading>
 
-      <div className="flex gap-4">
-        {assignments[0]?.id && (
-          <Modal>
-            <Modal.Open
-              opens="assignment"
-              render={({ onClick }) => (
-                <button
-                  className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary"
-                  onClick={onClick}
-                >
-                  এসাইনমেন্ট
-                </button>
-              )}
-            />
+      <Task>
+        <Modal>
+          {assignments[0]?.id && (
+            <>
+              <Modal.Open
+                opens="assignment"
+                render={({ onClick }) => (
+                  <Button onClick={onClick}>এসাইনমেন্ট</Button>
+                )}
+              />
 
-            <Modal.Window
-              windowName="assignment"
-              render={({ onClick }) => <h2 onClick={onClick}>Modal</h2>}
-            />
-          </Modal>
-        )}
+              <Modal.Window
+                windowName="assignment"
+                render={({ onClick }) => (
+                  <Assignment assignment={assignments[0]} />
+                )}
+              />
+            </>
+          )}
 
-        {quizzes?.[0].id && (
-          <a
-            href="./Quiz.html"
-            className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary"
-          >
-            কুইজে অংশগ্রহণ করুন
-          </a>
-        )}
-      </div>
-      <p className="mt-4 text-sm text-slate-400 leading-6">
-        {initialDescription || description}
-      </p>
+          {quizzes?.[0].id && (
+            <>
+              <Modal.Open
+                opens="quizzes"
+                render={({ onClick }) => (
+                  <Button onClick={onClick}>কুইজে অংশগ্রহণ করুন</Button>
+                )}
+              ></Modal.Open>
+
+              <Modal.Window
+                windowName={"quizzes"}
+                render={({ onClick }) => <></>}
+              />
+            </>
+          )}
+        </Modal>
+      </Task>
+
+      <Description>{initialDescription || description}</Description>
     </div>
   );
 }

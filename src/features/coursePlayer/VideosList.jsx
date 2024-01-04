@@ -1,5 +1,17 @@
+import styled from "styled-components";
 import VideoItem from "./VideoItem";
 import { useGetAllVideosQuery } from "./coursePlayerApi";
+
+const StyledVideosList = styled.div`
+  height: 57rem;
+  overflow-y: auto;
+  background-color: var(--color-silver-100);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+`;
 
 export default function VideosList() {
   const { data: videos, isLoading, isError, error } = useGetAllVideosQuery();
@@ -8,10 +20,10 @@ export default function VideosList() {
   if (isError) return <h2>{error || "Error while loading videos!"}</h2>;
 
   return (
-    <div className="col-span-full lg:col-auto max-h-[570px] overflow-y-auto bg-secondary p-4 rounded-md border border-slate-50/10 divide-y divide-slate-600/30">
+    <StyledVideosList>
       {videos.map((video) => (
         <VideoItem video={video} key={video.id} />
       ))}
-    </div>
+    </StyledVideosList>
   );
 }
